@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  ssh-cli:
+    build:
+      context: ./docker/ssh-cli
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./ssh-cli/workdir
+        target: /home/ssh-client/workdir
+      - type: bind
+        source: ./ssh-cli/.ssh
+        target: /home/ssh-client/.ssh
+    user: ssh-client
+    tty: true
+    stdin_open: true
